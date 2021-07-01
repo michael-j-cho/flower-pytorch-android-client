@@ -19,22 +19,22 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
-from torchvision.datasets import CIFAR10
 import os
 import flwr as fl
 import time
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-feature_extract = True
+feature_extract = True 
 num_classes = 4
 batch_size = 32
-data_dir = "/root/obstacles-sample-20/"
+data_dir = "/root/pyclient/obstacles-sample-20/"
 input_size = 224
 use_pretrained = True
-model_name = 'mobilenet'
+model_name = 'squeezenet'
 
 def main():
+    start_total = time.time()
     # Initialize the model 
     net, input_size = initialize_model(model_name, num_classes, feature_extract, use_pretrained)
 
@@ -60,11 +60,14 @@ def main():
         def evaluate(self, parameters, config):
             self.set_parameters(parameters)
             loss, accuracy = test(net, dataloaders_dict)
-            print(float(accuracy))
-            
+            print(float(accuracy))        
             return float(loss), len(dataloaders_dict), {"accuracy":float(accuracy)}
-
+       
     fl.client.start_numpy_client("18.116.222.87:8080", client=TLClient())
+    
+    end_total = time.time()
+    elapsed_total = end_total - start_total
+    print("Total training time: " + str(elapsed_total))
 
 def train(net, dataloaders_dict, epochs):
 #"""Train the network on the training set."""
