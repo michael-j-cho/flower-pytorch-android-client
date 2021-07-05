@@ -25,13 +25,13 @@ import time
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-feature_extract = True 
+feature_extract = False 
 num_classes = 4
 batch_size = 32
 data_dir = "/root/pyclient/obstacles-sample-20/"
 input_size = 224
 use_pretrained = True
-model_name = 'squeezenet'
+model_name = 'mobilenet'
 
 def main():
     start_total = time.time()
