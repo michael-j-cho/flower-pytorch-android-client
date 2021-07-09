@@ -28,8 +28,10 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 feature_extract = False 
 num_classes = 4
 batch_size = 32
-data_dir = "/root/pyclient/obstacles-sample-20/"
-input_size = 224
+/bin/bash: q: command not found
+#generalize path
+/bin/bash: wq: command not found
+/bin/bash: q: command not found
 use_pretrained = True
 model_name = 'mobilenet'
 
@@ -47,7 +49,7 @@ def main():
         def get_parameters(self):
             return [val.cpu().numpy() for _, val in net.state_dict().items()]
 
-        def set_parameters(self, parameters):
+/bin/bash: quuy: command not found
             params_dict = zip(net.state_dict().keys(), parameters)
             state_dict = OrderedDict({k: torch.Tensor(v) for k, v in params_dict})
             net.load_state_dict(state_dict, strict=True)
