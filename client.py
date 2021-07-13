@@ -28,10 +28,8 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 feature_extract = False 
 num_classes = 4
 batch_size = 32
-/bin/bash: q: command not found
-#generalize path
-/bin/bash: wq: command not found
-/bin/bash: q: command not found
+data_dir = "/root/pyclient/obstacles-sample-20/"
+input_size = 224
 use_pretrained = True
 model_name = 'mobilenet'
 
@@ -48,8 +46,6 @@ def main():
     class TLClient(fl.client.NumPyClient):
         def get_parameters(self):
             return [val.cpu().numpy() for _, val in net.state_dict().items()]
-
-/bin/bash: quuy: command not found
             params_dict = zip(net.state_dict().keys(), parameters)
             state_dict = OrderedDict({k: torch.Tensor(v) for k, v in params_dict})
             net.load_state_dict(state_dict, strict=True)
@@ -65,7 +61,7 @@ def main():
             print(float(accuracy))        
             return float(loss), len(dataloaders_dict), {"accuracy":float(accuracy)}
        
-    fl.client.start_numpy_client("18.116.222.87:8080", client=TLClient())
+    fl.client.start_numpy_client("34.216.101.68:8080", client=TLClient())
     
     end_total = time.time()
     elapsed_total = end_total - start_total
