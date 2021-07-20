@@ -1,3 +1,4 @@
+
 # Android PyTorch Client with Flower
 
 This is an Android client that supports federated learning models based on PyTorch by using the Flower federated learning framework. 
@@ -12,10 +13,15 @@ In order for the Android device to connect, you must authorize inbound traffic. 
 
 ![enter image description here](https://i.ibb.co/gJBRBvX/Screenshot-2021-07-12-233945.png)
 
-After your server instance is up and running, SSH into your server. Also, make note of your <strong>public server IP address</strong>. We will need the IP for setting up the client on Android. Make sure python3 and pip3 are installed. Then, install the Flower python package.
+After your server instance is up and running, SSH into your server. Also, make note of your <strong>public server IP address</strong>. We will need the IP for setting up the client on Android. You can find the IP address on your instance in the AWS EC2 dashboard.
+
+![enter image description here](https://i.ibb.co/FD5RD1k/Screenshot-2021-07-19-232028.png)
+
+Make sure python3 and pip3 are installed. Then, install the Flower python package.
 
     $ sudo apt update
     $ sudo apt install python3 python3-pip -y
+    $ pip3 install --upgrade pip
     $ pip3 install flwr
 
 Create a <span><strong>server.py</strong></span> file with your favorite text editor. Paste the following code into the server file and save.
@@ -59,14 +65,40 @@ After proot-distro is intalled, install and run the Ubuntu distro with the follo
 
 ![enter image description here](https://i.ibb.co/41rmKCS/Screenshot-2021-07-19-215542.png)
 
-You should be greeted with a new root@localhost terminal. From here, we need to install python3 and pip3.
+You should be greeted with a new root@localhost terminal. From here, we need to install python3, pip3, and git.
 
     $ apt update
-    $ apt install python3 python3-pip -y
+    $ apt install python3 python3-pip git -y
 
 Install the flwr and torch python packages, and clone the repository. This next step can take a while.
 
-    $ pip3 install flwr torch
-    $ git clone https://github.com/michael-j-cho/Flower-PyTorch-Android-Client.git
+    $ pip3 install --upgrade pip
+    $ pip3 install flwr torch torchvision
+    $ git clone git://github.com/michael-j-cho/Flower-PyTorch-Android-Client.git
 
-After cloning the git repository, we need to edit the client code with the correct image directory and server IP address.
+After cloning the git repository, we need to edit the client code and add the public server IP address from the server setup. Change directories and edit the <strong>client.py</strong> file.
+
+    $ cd Flower-PyTorch-Android-Client
+    $ nano client.py
+
+![enter image description here](https://i.ibb.co/y6sJSW5/Screenshot-2021-07-19-230800.png)
+
+Find the line "fl.client.start_numpy_client(....)" and enter the public ip address you obtained from the server setup. Exit and save the client.py file.
+
+Finally, we can run the server and client to train our model.
+
+# Training the Model
+
+On the AWS instance, we can run the server with the following command:
+
+    $ python3 server.py
+
+Similarly, we can run the client from the Android device with:
+
+    $ python3 client.py
+
+You need two clients running in order for the federated training to begin. You can run the other client from any other device. Or, you can run both clients from the same Android device. However, this is not recommended as training may take awhile.
+
+![enter image description here](https://i.ibb.co/KjtMmCk/Screenshot-2021-07-19-233138.png)
+
+I hope you found this tutorial informative and helpful. Please let me know if anything needs clarification.
