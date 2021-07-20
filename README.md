@@ -6,6 +6,8 @@ This is an Android client that supports federated learning models based on PyTor
 
 For the Flower server, you can create a free Amazon Web Services EC2 instance running Ubuntu. The free tier service will work fine for the purposes of this setup. You can create a free account [here](https://portal.aws.amazon.com/billing/signup#/start). In order for the Android device to connect, you must authorize inbound traffic. 
 
+[EC2 Setup Tutorial](https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html)
+
 ![enter image description here](https://i.ibb.co/gJBRBvX/Screenshot-2021-07-12-233945.png)
 
 After your server instance is up and running. You can setup the Flower server. Make sure python3 and pip3 are installed. Then, install the Flower python package.
