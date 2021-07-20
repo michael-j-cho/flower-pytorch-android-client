@@ -1,4 +1,3 @@
-
 # Android PyTorch Client with Flower
 
 This is an Android client that supports federated learning models based on PyTorch by using the Flower federated learning framework. 
@@ -13,7 +12,7 @@ In order for the Android device to connect, you must authorize inbound traffic. 
 
 ![enter image description here](https://i.ibb.co/gJBRBvX/Screenshot-2021-07-12-233945.png)
 
-After your server instance is up and running, SSH into your server. Also, make note of your server IP address. We will need the IP for setting up the client on Android. Make sure python3 and pip3 are installed. Then, install the Flower python package.
+After your server instance is up and running, SSH into your server. Also, make note of your <strong>public server IP address</strong>. We will need the IP for setting up the client on Android. Make sure python3 and pip3 are installed. Then, install the Flower python package.
 
     $ sudo apt update
     $ sudo apt install python3 python3-pip -y
@@ -36,22 +35,38 @@ On your device, go to the Google Play Store and install the Termux application. 
 
 ![enter image description here](https://i.ibb.co/MMHwYQQ/termux.png)
 
-Next, we need to install proot and ubuntu. Open up the Termux application. A terminal environment should appear on your phone. In the terminal, update your package repositories and install proot with the following commands.
 
+Next, we need to install proot and ubuntu. Open up the Termux application. A terminal environment should appear on your phone. In the terminal, we need to change the repositories.
+
+    $ termux-change-repo
+
+![enter image description here](https://i.ibb.co/VB0yBP1/Screenshot-2021-07-19-222047.png)
+
+Press <strong>Enter</strong> and change the repository to the Albatross mirror. Press <strong>Enter</strong>.
+
+![enter image description here](https://i.ibb.co/YkLFXn5/Screenshot-2021-07-19-221935.png)
+  ![enter image description here](https://i.ibb.co/xDHPGF2/Screenshot-2021-07-19-221950.png)
+
+Now, we can update our repositories and install proot-distro from the terminal.
+  
     $ pkg update
     $ pkg install proot-distro -y
 
-Now, we can install and run the Ubuntu distro with the following commands.
+After proot-distro is intalled, install and run the Ubuntu distro with the following commands.
 
     $ proot-distro install ubuntu-18.04
     $ proot-distro login ubuntu-18.04
 
 ![enter image description here](https://i.ibb.co/41rmKCS/Screenshot-2021-07-19-215542.png)
 
-You should be greeted with a new root@localhost terminal. From here, we need to install the python packages and clone the repository. These next two commands can take a while, so please be patient.
+You should be greeted with a new root@localhost terminal. From here, we need to install python3 and pip3.
 
-    $ pip install flwr torch
+    $ apt update
+    $ apt install python3 python3-pip -y
+
+Install the flwr and torch python packages, and clone the repository. This next step can take a while.
+
+    $ pip3 install flwr torch
     $ git clone https://github.com/michael-j-cho/Flower-PyTorch-Android-Client.git
 
 After cloning the git repository, we need to edit the client code with the correct image directory and server IP address.
-
