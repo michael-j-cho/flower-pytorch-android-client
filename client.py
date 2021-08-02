@@ -66,7 +66,7 @@ def main():
             print(float(accuracy))        
             return float(loss), len(dataloaders_dict), {"accuracy":float(accuracy)}
        
-    fl.client.start_numpy_client("34.216.101.68:8080", client=TLClient())
+    fl.client.start_numpy_client("54.219.134.11:8080", client=TLClient())
     
     end_total = time.time()
     elapsed_total = end_total - start_total
