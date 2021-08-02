@@ -1,7 +1,7 @@
 #! /bin/bash
 
-apt update
-apt install python3 python3-pip -y
+sudo apt update
+sudo apt install python3 python3-pip -y
 pip3 install --upgrade pip
 pip3 install flwr
 
