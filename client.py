@@ -31,7 +31,7 @@ batch_size = 32
 data_dir = "/root/Flower-PyTorch-Android-Client/obstacles-sample-20/"
 input_size = 224
 use_pretrained = True
-model_name = 'mobilenet'
+model_name = 'squeezenet'
 
 def main():
     start_total = time.time()
