@@ -100,7 +100,7 @@ def train(net, dataloaders_dict, epochs):
 
 def test(net, dataloaders_dict):
  #   """Validate the network on the entire test set."""
-    print("Test Fucntion Start...")
+    #print("Test Fucntion Start...")
     criterion = torch.nn.CrossEntropyLoss()
     correct, total, loss, count = 0, 0, 0.0, 0
     net.eval()
@@ -109,7 +109,7 @@ def test(net, dataloaders_dict):
             count = count + 1
             if count == 1:
                 break
-            print("Test " + str(count))
+            #print("Test " + str(count))
             images, labels = data[0].to(DEVICE), data[1].to(DEVICE)
             outputs = net(images)
             loss += criterion(outputs, labels).item()
@@ -117,7 +117,7 @@ def test(net, dataloaders_dict):
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
     #accuracy = correct / total
-    print("Test Function End...")
+    #print("Test Function End...")
     #return loss, accuracy
     return 0, 0
 
