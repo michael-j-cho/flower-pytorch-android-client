@@ -1,7 +1,7 @@
 
 # Android PyTorch Client with Flower
 
-This is an Android client that supports federated learning models based on PyTorch by using the Flower federated learning framework. 
+This is a PyTorch client interface running on Android that supports federated learning using the Flower federated learning framework. 
 
 # Server Setup
 
