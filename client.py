@@ -63,7 +63,7 @@ def main():
         def evaluate(self, parameters, config):
             self.set_parameters(parameters)
             loss, accuracy = test(net, dataloaders_dict)
-            print(float(accuracy))        
+            #print(float(accuracy))        
             return float(loss), len(dataloaders_dict), {"accuracy":float(accuracy)}
        
     fl.client.start_numpy_client("54.219.134.11:8080", client=TLClient())
