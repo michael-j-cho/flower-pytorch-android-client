@@ -96,7 +96,7 @@ def train(net, dataloaders_dict, epochs):
     end = time.time()
     elapsed = end - start
     print("Training Time Elapsed: " + str(elapsed))
-    print("Training Function End...")
+    #print("Training Function End...")
 
 def test(net, dataloaders_dict):
  #   """Validate the network on the entire test set."""
